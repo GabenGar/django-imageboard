@@ -1,0 +1,17 @@
+<form id="postForm" action="" method="post" enctype="multipart/form-data">
+  {{ form.poster }}
+  <button type="submit">Ok</button>
+  {{ form.text }}
+  {{ form.image }}
+  {% csrf_token %}
+</form>
+
+{##}
+{#    <form hidden style="margin-top: 50px" id="postForm" action="{% url 'get_thread' thread.id %}" method="post"#}
+{#          enctype="multipart/form-data">#}
+{#      {{ form.poster }}#}
+{#      <button type="submit">Ok</button>#}
+{#      {{ form.text }}#}
+{#      {{ form.image }}#}
+{#      {% csrf_token %}#}
+{#    </form>#}

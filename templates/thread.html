@@ -1,0 +1,60 @@
+{% extends '_base.html' %}
+{% load extra %}
+{% block content %}
+  <div class="container">
+    {% include 'quickpostform.html' %}
+    <article class="opPost" id="id{{ thread.pk }}" data-threadid="{{ thread.pk }}">
+      <div class="opPostHeader">
+            <span style="margin-right: 10px">{{ thread.poster }} {{ thread.date|date:'d/m/Y G:i' }} №:
+              <a class="postLink" href="#id{{ thread.pk }}">{{ thread.pk }}</a></span>
+      </div>
+      <div class="imglink">
+        <a href="{{ thread.image.url }}">{{ thread.image.url|strippath|truncatechars:33 }}</a>
+        ({{ thread.image.size|filesizeformat }})
+      </div>
+      <div class="imagediv">
+        <a style="float: left" href="{{ thread.image.url }}">
+          <img class="image" src="{{ thread.thumbnail.url }}" alt="">
+        </a>
+      </div>
+      <div class="text"> {{ thread.text }}</div>
+    </article>
+    {% for post in thread.post_set.all %}
+      <article data-threadid="{{ thread.pk }}" data-postid="{{ post.pk }}" id="id{{ post.pk }}" class="post">
+        <div class="postHeader">
+          {{ post.poster }} {{ post.date|date:'d/m/Y' }} {{ post.date|date:'G:i' }} №
+          <a style="color: inherit" class="postLink" href="#{{ post.pk }}">{{ post.pk }}</a>
+          {{ forloop.counter }}
+        </div>
+        {% if post.thumbnail %}
+          <div class="imglink"><a href="{{ post.image.url }}">{{ post.image.url|strippath|truncatechars:33 }}</a>
+            ({{ thread.image.size|filesizeformat }})
+          </div>
+          <div class="imagediv">
+            <a style="float: left" href="{{ post.image.url }}"> <img class="image" src="{{ post.thumbnail.url }}"
+                                                                     alt="">
+            </a>
+          </div>
+        {% endif %}
+        <div class="text">{% customize_post_string post.text posts_ids %}</div>
+      </article>
+    {% endfor %}
+    {{ form.image.errors }}
+    {{ form.text.errors }}
+    <details>
+      <summary><span onclick="setTimeout(focusTextArea, 5)"
+                                             id="showFormButton">Ответить</span></summary>
+      {% include 'postform.html' %}
+    </details>
+    <div id="bottom"></div>
+  </div>
+  <script>showQuickPostForm();
+  dragPostForm(document.getElementById("quickPostHeader"));
+  expandImages();
+  addTooltip()
+  {% if gotobottom is True %}
+      document.querySelector('details').open = true;
+      document.querySelector('details').scrollIntoView()
+  {% endif %}
+  </script>
+{% endblock content %}

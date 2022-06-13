@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link href="{% static 'css/cs2.css' %}" rel="stylesheet">
+  <script src="{% static 'js/popper.min.js' %}"></script>
+  <script src="{% static 'js/tippy-bundle.umd.js' %}"></script>
+  <script src={% static "js.js" %}></script>
+  <title>{{ thread.title }}</title>
+</head>
+<body>
+{% include 'header.html' %}
+{{ form.image.errors }}
+{{ form.text.errors }}
+{% block content %}
+{% endblock content %}
+{% include 'footer.html' %}
+</body>
+</html>

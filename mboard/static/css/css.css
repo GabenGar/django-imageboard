@@ -1,0 +1,189 @@
+.container {
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 250px;
+}
+
+.footer {
+    color: cornflowerblue;
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+.header {
+    margin-bottom: 100px;
+    margin-top: 20px;
+}
+
+body {
+    background-color: #1d1f21;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+.post {
+    color: white;
+    display: table;
+    background-color: #282A2E;
+    padding: 10px;
+    /*font-size: large;*/
+    margin-top: 15px;
+}
+
+.threadlink {
+    color: cornflowerblue;
+    text-decoration: none;
+}
+
+
+.text {
+    overflow: auto;
+    /*display: inline;*/
+    word-wrap: anywhere;
+    font-size: large;
+
+}
+
+.thread {
+    color: white;
+    clear: both;
+    margin-top: 30px
+}
+
+.opPost {
+    color: white;
+}
+
+.opPostHeader {
+    color: darkgray;
+    /*display: inline;*/
+    /*font-size: small;*/
+}
+
+.postHeader {
+    color: darkgray;
+    margin-bottom: 5px;
+}
+
+.image {
+    margin-right: 25px;
+    max-width: 1000px;
+}
+
+.imagediv {
+    display: contents;
+}
+
+.imagediv-expanded {
+    display: table;
+}
+
+details {
+    /*margin-bottom: 120px;*/
+    margin-top: 50px;
+    clear: both;
+}
+
+#postForm {
+    width: 500px;
+    margin-left: 35%;
+    margin-right: auto;
+    color: white;
+    margin-top: 30px;
+}
+
+#postForm > #id_text {
+    display: block;
+    background-color: #282A2E;
+    border: none;
+    color: white;
+    resize: both;
+    min-width: 400px;
+    outline: none;;
+}
+
+#postForm > #id_poster {
+    width: 365px;
+    background-color: #282A2E;
+    border: none;
+    outline: none;
+    color: white;
+}
+
+#quickPostForm {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    background-color: #282a2e;
+    width: 355px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+
+}
+
+#quickPostForm > #id_text {
+    display: block;
+    background-color: #282A2E;
+    border: none;
+    color: white;
+    resize: both;
+    min-width: 350px;
+    outline: none;;
+}
+
+#quickPostForm > #id_poster {
+    width: -moz-available;
+    background-color: #282a2e;
+    border: none;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    outline: none;
+    color: white;
+}
+
+.errorlist {
+    color: red;
+    text-align: center;
+}
+
+a {
+    color: cornflowerblue;
+    text-decoration: none
+}
+
+.postHeader a {
+    color: inherit;
+}
+
+#showFormButton {
+    font-size: x-large;
+    color: cornflowerblue;
+    position: relative;
+    /*left: 45%;*/
+    display: block;
+    text-align: center;
+}
+
+.imglink {
+    font-size: 11px;
+}
+
+.info {
+    color: red;
+    text-align: center;
+}
+
+.tippy-content {
+    font-size: 17px;
+    /*white-space: pre-line;*/
+    /*min-height: 100px;*/
+    /*min-width: 250px;*/
+    border: 2px solid black;
+    background-color: #282A2E;
+    display: flex;
+
+}

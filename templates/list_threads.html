@@ -1,0 +1,61 @@
+{% extends '_base.html' %}
+{% load extra %}
+{% load static %}
+{% block content %}
+  <div class="container">
+    <details>
+      <summary><span onclick="setTimeout(focusTextArea, 5)"
+                                             id="showFormButton">Запилить тред</span>
+      </summary>
+      {% include 'postform.html' %}
+    </details>
+    <br>
+    {% for thread, posts in threads.items %}
+      <section class="thread" id="id{{ thread.pk }}">
+        <article class="opPost" id="{{ thread.pk }}" data-threadid="{{ thread.pk }}">
+          <div class="opPostHeader">
+            <span style="margin-right: 10px">{{ thread.poster }} {{ thread.date|date:'d/m/Y G:i' }} №:
+              <a class="postLink" href="#id{{ thread.pk }}">{{ thread.pk }}</a></span>
+            <a class="threadlink" href="{% url 'get_thread' thread.pk %}">В тред</a>
+          </div>
+          <div class="imglink">
+            <a href="{{ thread.image.url }}">{{ thread.image.url|strippath|truncatechars:33 }}</a>
+            ({{ thread.image.size|filesizeformat }})
+          </div>
+          <div class="imagediv">
+            <a style="float: left" href="{{ thread.image.url }}">
+              <img class="image" src="{{ thread.thumbnail.url }}" alt="">
+            </a>
+          </div>
+          <div class="text">{{ thread.text }}</div>
+        </article>
+        {% if not posts %}
+          {# <div style="height: 30px"></div>#}
+        {% endif %}
+        {% for post in posts %}
+          <article data-threadid="{{ thread.pk }}" data-id="{{ post.pk }}" id="id{{ post.pk }}" class="post">
+            <div class="postHeader">{{ post.poster }} {{ post.date|date:'d/m/Y G:i' }}
+              №: <a class="postLink" href="thread/{{ thread.pk }}#id{{ post.pk }}">{{ post.pk }}</a></div>
+            {% if post.thumbnail %}
+              <div class="imglink"><a href="{{ post.image.url }}">{{ post.image.url|strippath|truncatechars:33 }}</a>
+                ({{ thread.image.size|filesizeformat }})
+              </div>
+              <div class="imagediv">
+                <a style="float: left" href="{{ post.image.url }}"><img class="image" src="{{ post.thumbnail.url }}"
+                                                                        alt=""></a>
+              </div>
+            {% endif %}
+            <div class="text">{% customize_post_string post.text posts_ids thread.pk %}</div>
+          </article>
+        {% endfor %}
+      </section>
+      <div style="font: caption; color: darkgray;">Всего постов: {{ thread.post_set.all|length }}</div>
+      <hr style="clear: both; color: dimgrey">
+    {% endfor %}
+    {% include 'quickpostform.html' %}
+  </div>
+  <script>
+      expandImages();
+      showQuickPostForm();
+      dragPostForm(document.getElementById("quickPostHeader"));</script>
+{% endblock content %}
