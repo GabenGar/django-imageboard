@@ -17,13 +17,13 @@
           <img class="image" src="{{ thread.thumbnail.url }}" alt="">
         </a>
       </div>
-      <div class="text"> {{ thread.text }}</div>
+      <div class="text"> {{ thread.text|linebreaksbr}}</div>
     </article>
     {% for post in thread.post_set.all %}
       <article data-threadid="{{ thread.pk }}" data-postid="{{ post.pk }}" id="id{{ post.pk }}" class="post">
         <div class="postHeader">
           {{ post.poster }} {{ post.date|date:'d/m/Y' }} {{ post.date|date:'G:i' }} №
-          <a style="color: inherit" class="postLink" href="#{{ post.pk }}">{{ post.pk }}</a>
+          <a style='margin-right: 10px' class="postLink" href="#{{ post.pk }}">{{ post.pk }}</a>
           {{ forloop.counter }}
         </div>
         {% if post.thumbnail %}

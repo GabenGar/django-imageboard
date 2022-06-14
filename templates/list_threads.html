@@ -27,7 +27,7 @@
               <img class="image" src="{{ thread.thumbnail.url }}" alt="">
             </a>
           </div>
-          <div class="text">{{ thread.text }}</div>
+          <div class="text">{{ thread.text|linebreaksbr}}</div>
         </article>
         {% if not posts %}
           {# <div style="height: 30px"></div>#}

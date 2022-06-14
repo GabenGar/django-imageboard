@@ -3,11 +3,14 @@
       enctype="multipart/form-data">
   <img id='closebutton' alt="Close" style="float: left" src="{% static 'close.svg' %}">
   <div id='quickPostHeader' style="cursor: move; text-align: center"><span>Ответить в тред</span>
-    <button style="float: right" type="submit">Ok</button>
   </div>
   {% csrf_token %}
-  {{ form.poster }}
+  <div style="display: flex;">
+    {{ form.poster }}
+    <button style="float: right" type="submit">Отправить</button>
+  </div>
   {{ form.text }}
   {{ form.image }}
   {{ form.threadnum.as_hidden }}
 </form>
+

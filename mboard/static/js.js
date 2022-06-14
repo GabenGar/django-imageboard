@@ -49,15 +49,16 @@ function showQuickPostForm() {
         if (!quickPostForm.hidden) {
             {
                 const postId = this.closest('article').id;  // this === e.currentTarget
-                quickPostFormTextArea.value += `>>${postId}\n`.replace('id', ''); // '>>id1234' => '>>1234' pizdos
+                // quickPostFormTextArea.value += `>>${postId}\n`.replace('id', ''); // '>>id1234' => '>>1234' pizdos
                 try {
-                    if (window.getSelection().focusNode.parentElement.closest('article').id === this.closest('article').id) {
-                        const selectedText = window.getSelection();
+                    if (window.getSelection().anchorNode.parentElement.closest('article').id === this.closest('article').id) {
+                        const selectedText = window.getSelection().toString().trimEnd();
                         quickPostFormTextArea.value += '>';
-                        quickPostFormTextArea.value += selectedText.toString();
+                        quickPostFormTextArea.value += selectedText.replace(/\n/g, '\n>');
                         quickPostFormTextArea.value += '\n';
                     }
                 } catch (e) {
+                    console.log(e);
                 }
                 document.querySelector('#quickPostForm > #id_threadnum').value = this.closest('article').dataset['threadid'];
                 if (!postForm.hidden) {
