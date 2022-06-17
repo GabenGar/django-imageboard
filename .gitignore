@@ -1,4 +1,10 @@
-# vscode stuff
+# python
+__pycache__
+
+# django
+/projectconfig/settings.py
+
+# vscode
 *.code-workspace
 
 # virtualenv
